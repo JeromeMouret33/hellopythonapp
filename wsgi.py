@@ -14,7 +14,6 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Flask
-import requests
 application = Flask(__name__)
 
 @application.route('/')
