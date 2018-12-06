@@ -22,7 +22,7 @@ def accueil():
     overpass_url = "https://www.openstreetmap.org/api/capabilities"
 
     response = requests.get(overpass_url)
-
+    print("ok")
     return str(response.text)
 
 if __name__ == '__main__':
