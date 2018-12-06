@@ -17,9 +17,23 @@ from flask import Flask
 application = Flask(__name__)
 
 @application.route('/')
-def hello_world():
-    print("test")
-    return "Hello Python World!\r\n", 200, { 'Content-Type': 'text/plain' }
+def accueil():
+    mots = ["bonjour", "à", "toi,", "visiteur."]
+    puces = ''.join("<li>{}</li>".format(m) for m in mots)
+    return """<!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="utf-8" />
+                <title>{titre}</title>
+            </head>
+        
+            <body>
+                <h1>{titre}</h1>
+                <ul>
+                    {puces}
+                </ul>
+            </body>
+        </html>""".format(titre="Bienvenue !", puces=puces)
 
 if __name__ == '__main__':
     application.run(debug = True)
