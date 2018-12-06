@@ -20,7 +20,7 @@ application = Flask(__name__)
 def accueil():
     r = requests.get('https://www.openstreetmap.org/api/capabilities')
     print("test")
-    return r
+    return str(r)
 
 if __name__ == '__main__':
     application.run(debug = True)
