@@ -18,7 +18,7 @@ application = Flask(__name__)
 
 @application.route('/')
 def accueil():
-    r = requests.get('http://api06.dev.openstreetmap.org/api/0.6/map?bbox=0.2,46.5,0.4,46.7')
+    r = requests.get('https://www.openstreetmap.org/api/capabilities')
     return """<!DOCTYPE html>
         <html>
             <head>
