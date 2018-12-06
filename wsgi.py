@@ -13,14 +13,26 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 import requests
+import json
 from flask import Flask
 application = Flask(__name__)
 
 @application.route('/')
 def accueil():
-    r = requests.get('https://www.openstreetmap.org/api/capabilities')
-    print("test")
-    return str(r)
+    overpass_url = "http://overpass-api.de/api/interpreter"
+    overpass_query = """
+    [out:json];
+    area["ISO3166-1"="DE"][admin_level=2];
+    (node["amenity"="biergarten"](area);
+    way["amenity"="biergarten"](area);
+    rel["amenity"="biergarten"](area);
+    );
+    out center;
+    """
+    response = requests.get(overpass_url, 
+                            params={'data': overpass_query})
+    data = response.json()
+    return str(data)
 
 if __name__ == '__main__':
     application.run(debug = True)
