@@ -19,17 +19,8 @@ application = Flask(__name__)
 @application.route('/')
 def accueil():
     r = requests.get('https://www.openstreetmap.org/api/capabilities')
-    return """<!DOCTYPE html>
-        <html>
-            <head>
-                <meta charset="utf-8" />
-                <title>API</title>
-            </head>
-        
-            <body>
-                <h1>{resultat}</h1>
-            </body>
-        </html>""".format(resultat=r)
+    print("test")
+    return r
 
 if __name__ == '__main__':
     application.run(debug = True)
