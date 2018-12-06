@@ -19,20 +19,11 @@ application = Flask(__name__)
 
 @application.route('/')
 def accueil():
-    overpass_url = "http://overpass-api.de/api/interpreter"
-    overpass_query = """
-    [out:json];
-    area["ISO3166-1"="DE"][admin_level=2];
-    (node["amenity"="biergarten"](area);
-    way["amenity"="biergarten"](area);
-    rel["amenity"="biergarten"](area);
-    );
-    out center;
-    """
-    response = requests.get(overpass_url, 
-                            params={'data': overpass_query})
-    data = response.json()
-    return str(data)
+    overpass_url = "https://www.openstreetmap.org/api/capabilities"
+
+    response = requests.get(overpass_url)
+
+    return str(response.text)
 
 if __name__ == '__main__':
     application.run(debug = True)
