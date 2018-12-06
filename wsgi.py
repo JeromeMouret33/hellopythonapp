@@ -19,7 +19,6 @@ application = Flask(__name__)
 
 @application.route('/')
 def hello_world():
-    import requests
     r = requests.get('http://api06.dev.openstreetmap.org/api/0.6/map?bbox=0.2,46.5,0.4,46.7')
     print(r)
     return "Hello Python World!\r\n", 200, { 'Content-Type': 'text/plain' }
