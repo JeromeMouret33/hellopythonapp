@@ -12,28 +12,24 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
-
+import requests
 from flask import Flask
 application = Flask(__name__)
 
 @application.route('/')
 def accueil():
-    mots = ["bonjour", "à", "toi,", "visiteur."]
-    puces = ''.join("<li>{}</li>".format(m) for m in mots)
+    r = requests.get('http://api06.dev.openstreetmap.org/api/0.6/map?bbox=0.2,46.5,0.4,46.7')
     return """<!DOCTYPE html>
         <html>
             <head>
                 <meta charset="utf-8" />
-                <title>{titre}</title>
+                <title>API</title>
             </head>
         
             <body>
-                <h1>{titre}</h1>
-                <ul>
-                    {puces}
-                </ul>
+                <h1>{resultat}</h1>
             </body>
-        </html>""".format(titre="Bienvenue !", puces=puces)
+        </html>""".format(resultat=r)
 
 if __name__ == '__main__':
     application.run(debug = True)
