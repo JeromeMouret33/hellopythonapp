@@ -1,4 +1,4 @@
 gunicorn
 Flask
 requests
-json
+json-encoder
